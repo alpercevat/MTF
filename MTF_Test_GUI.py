@@ -109,7 +109,9 @@ def open_File():
 
     mtf_mod = abs(np.fft.fft(lsf_mod))
     mtf_mod = mtf_mod[:]/np.max(mtf_mod)
-    mtf_mod = mtf_mod[:len(mtf_mod)//2]
+    mtf_mod = np.array(sorted(mtf_mod, reverse= True))
+    mtf_mod = mtf_mod[::2]
+    #mtf_mod = mtf_mod[:len(mtf_mod)//2]
 
     ix_mod = np.arange(mtf_mod.shape[0]) / (mtf_mod.shape[0])
     mtf_poly_mod =  np.polyfit(ix_mod, mtf_mod, 6)
